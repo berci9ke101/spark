@@ -1,5 +1,8 @@
 package spark.quest;
 
+/**
+ * A simple Quest class, that fully implements the Quest class
+ * */
 public class SimpleQuest extends Quest
 {
     /*Methods*/

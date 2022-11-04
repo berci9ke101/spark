@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * A Quest class with a random description
+ * */
 public class RandomQuest extends Quest
 {
     /*Attributes*/

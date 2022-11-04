@@ -1,5 +1,8 @@
 package spark.quest;
 
+/**
+ * Default abstract Quest class
+ * */
 abstract public class Quest
 {
     /*Attributes*/

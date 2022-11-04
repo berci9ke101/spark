@@ -1,5 +1,8 @@
 package spark.quest;
 
+/**
+ * A Quest that, displays an alternative description and offers an alternative transition if it was visited
+ * */
 public class VisitableQuest extends Quest
 {
     /*Attributes*/
