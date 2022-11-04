@@ -48,7 +48,8 @@ public class VisitableQuest extends Quest
 
     /**
      * Getter for JumpA ID
-     *
+     * @\\
+     * If it was the first visit it sets the visited attribute to true.
      * @return The ID where the Quest alternate jumps to or super's A option's ID
      */
     @Override
@@ -63,8 +64,9 @@ public class VisitableQuest extends Quest
     }
 
     /**
-     * Getter for JumpB ID
-     *
+     Getter for JumpB ID
+     * @\\
+     * If it was the first visit it sets the visited attribute to true.
      * @return The ID where the Quest alternate jumps to or super's B option's ID
      */
     @Override
