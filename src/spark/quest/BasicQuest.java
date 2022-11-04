@@ -3,7 +3,7 @@ package spark.quest;
 /**
  * A simple Quest class, that fully implements the Quest class
  * */
-public class SimpleQuest extends Quest
+public class BasicQuest extends Quest
 {
     /*Methods*/
 
@@ -17,7 +17,7 @@ public class SimpleQuest extends Quest
      * @param JumpA The transition ID for option A
      * @param JumpB The transition ID for option A
      */
-    public SimpleQuest(int ID, String Desc, String OptionA, String OptionB, int JumpA, int JumpB)
+    public BasicQuest(int ID, String Desc, String OptionA, String OptionB, int JumpA, int JumpB)
     {
         super(ID, Desc, OptionA, OptionB, JumpA, JumpB);
     }
