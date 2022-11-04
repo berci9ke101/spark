@@ -6,7 +6,7 @@ public class VisitableQuest extends Quest
 
     private String alternatedesc;       //The alternative description of the Quest, which is displayed only when the quest has been visited
     private boolean visited;            //Indicates whether the Quest was visited or not
-    private long alternatejump;         //This is the alternative ID the Quest autojumps to if it was visited
+    private long alternatejump;         //This is the alternative ID the Quest alternate jumps to if it was visited
 
     /*Methods*/
 
@@ -41,12 +41,32 @@ public class VisitableQuest extends Quest
     }
 
     /**
-     * Getter for alternative jump
+     * Getter for JumpA ID
      *
-     * @return The ID where the Quest autojumps to
+     * @return The ID where the Quest alternate jumps to or super's A option's ID
      */
-    public long getAlternatejump()
+    @Override
+    public long getJumpA()
     {
-        return alternatejump;
+        if (visited)
+        {
+            return alternatejump;
+        }
+        return super.getJumpA();
+    }
+
+    /**
+     * Getter for JumpB ID
+     *
+     * @return The ID where the Quest alternate jumps to or super's B option's ID
+     */
+    @Override
+    public long getJumpB()
+    {
+        if (visited)
+        {
+            return alternatejump;
+        }
+        return super.getJumpB();
     }
 }
