@@ -24,7 +24,7 @@ public class RandomQuest extends Quest
      * @param JumpA   The transition ID for option A
      * @param JumpB   The transition ID for option A
      */
-    public RandomQuest(long ID, String Desc, String OptionA, String OptionB, long JumpA, long JumpB)
+    public RandomQuest(int ID, String Desc, String OptionA, String OptionB, int JumpA, int JumpB)
     {
         super(ID, Desc, OptionA, OptionB, JumpA, JumpB);
 

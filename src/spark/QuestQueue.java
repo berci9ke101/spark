@@ -41,7 +41,8 @@ public class QuestQueue
      */
     public void chooseA()
     {
-
+        int temp_state = current_state;
+        current_state = this.at(current_state).getJumpA();
     }
 
     /**
@@ -64,6 +65,8 @@ public class QuestQueue
 
     /**
      * Returns the Quest object at the given index
+     *
+     * @return The Quest object at the given index
      */
     public Quest at(int index)
     {

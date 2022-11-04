@@ -7,12 +7,12 @@ abstract public class Quest
 {
     /*Attributes*/
 
-    private long ID = -1;           //The id of the quest
+    private int ID = -1;           //The id of the quest
     private String Desc = "";       //The description of the quest
     private String OptionA = "";    //The text for option A
     private String OptionB = "";    //The text for option B
-    private long JumpA = -1;        //The transition ID for option A
-    private long JumpB = -1;        //The transition ID for option B
+    private int JumpA = -1;        //The transition ID for option A
+    private int JumpB = -1;        //The transition ID for option B
 
     /*Methods*/
 
@@ -26,7 +26,7 @@ abstract public class Quest
      * @param JumpA The transition ID for option A
      * @param JumpB The transition ID for option A
      */
-    public Quest(long ID, String Desc, String OptionA, String OptionB, long JumpA, long JumpB)
+    public Quest(int ID, String Desc, String OptionA, String OptionB, int JumpA, int JumpB)
     {
         this.ID = ID;
         this.Desc = Desc;
@@ -41,7 +41,7 @@ abstract public class Quest
      *
      * @return ID of the Quest
      */
-    public long getID()
+    public int getID()
     {
         return ID;
     }
@@ -81,7 +81,7 @@ abstract public class Quest
      *
      * @return The transition ID for option A
      */
-    public long getJumpA()
+    public int getJumpA()
     {
         return JumpA;
     }
@@ -91,7 +91,7 @@ abstract public class Quest
      *
      * @return The transition ID for option B
      */
-    public long getJumpB()
+    public int getJumpB()
     {
         return JumpB;
     }
