@@ -71,9 +71,4 @@ public class QuestQueue
     {
         return queue.get(index);
     }
-
-    public void loadfromFile(String name)
-    {
-        dsd
-    }
 }
