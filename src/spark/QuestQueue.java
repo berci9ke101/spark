@@ -14,7 +14,7 @@ public class QuestQueue
     /*Attributes*/
 
     private List<Quest> queue = new ArrayList<>();      //The list that stores the Quest objects
-    private int current_state;                         //Stores the state, that the queue is currently in
+    private int current_state = 0;                      //Stores the state, that the queue is currently in
 
     /*Methods*/
 
@@ -41,7 +41,6 @@ public class QuestQueue
      */
     public void chooseA()
     {
-        int temp_state = current_state;
         current_state = this.at(current_state).getJumpA();
     }
 
@@ -50,7 +49,7 @@ public class QuestQueue
      */
     public void chooseB()
     {
-
+        current_state = this.at(current_state).getJumpB();
     }
 
     /**
@@ -71,5 +70,10 @@ public class QuestQueue
     public Quest at(int index)
     {
         return queue.get(index);
+    }
+
+    public void loadfromFile(String name)
+    {
+        dsd
     }
 }

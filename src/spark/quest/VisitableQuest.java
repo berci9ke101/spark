@@ -9,7 +9,7 @@ public class VisitableQuest extends Quest
 
     private String alternatedesc;       //The alternative description of the Quest, which is displayed only when the quest has been visited
     private boolean visited = false;    //Indicates whether the Quest was visited or not
-    private int alternatejump;         //This is the alternative ID the Quest alternate jumps to if it was visited
+    private int alternatejump;          //This is the alternative ID the Quest alternate jumps to if it was visited
 
     /*Methods*/
 
