@@ -5,7 +5,7 @@ public class VisitableQuest extends Quest
     /*Attributes*/
 
     private String alternatedesc;       //The alternative description of the Quest, which is displayed only when the quest has been visited
-    private boolean visited;            //Indicates whether the Quest was visited or not
+    private boolean visited = false;    //Indicates whether the Quest was visited or not
     private long alternatejump;         //This is the alternative ID the Quest alternate jumps to if it was visited
 
     /*Methods*/
@@ -20,9 +20,11 @@ public class VisitableQuest extends Quest
      * @param JumpA   The transition ID for option A
      * @param JumpB   The transition ID for option A
      */
-    public VisitableQuest(long ID, String Desc, String OptionA, String OptionB, long JumpA, long JumpB)
+    public VisitableQuest(long ID, String Desc, String OptionA, String OptionB, long JumpA, long JumpB, String alternatedesc, long alternatejump)
     {
         super(ID, Desc, OptionA, OptionB, JumpA, JumpB);
+        this.alternatedesc = alternatedesc;
+        this.alternatejump = alternatejump;
     }
 
     /**
@@ -37,6 +39,7 @@ public class VisitableQuest extends Quest
         {
             return alternatedesc;
         }
+        this.visited = true;
         return super.getDesc();
     }
 
@@ -52,6 +55,7 @@ public class VisitableQuest extends Quest
         {
             return alternatejump;
         }
+        this.visited = true;
         return super.getJumpA();
     }
 
