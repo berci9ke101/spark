@@ -140,4 +140,9 @@ public class SparkFrame
             }
         }
     }
+
+    /**
+     * The Game Frame itself
+     * */
+    class
 }
