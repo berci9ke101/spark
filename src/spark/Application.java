@@ -7,7 +7,5 @@ public class Application
         SparkFrame sp = new SparkFrame();
 
         sp.initComponents();
-
-        System.out.println("Hello world!");
     }
 }

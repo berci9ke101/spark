@@ -1,5 +1,7 @@
 package spark;
 
+import com.sun.tools.javac.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -19,7 +21,7 @@ public class SparkFrame
     }
 
     /*Attributes*/
-    private GameFile GAME;              //The game file of the game
+    private GameFile GAME = new GameFile();              //The game file of the game
     private MainMenu mainMenu;          //The main menu of the game
     private GameFrame gameFrame;        //The game frame
 
@@ -32,12 +34,13 @@ public class SparkFrame
 
         private JButton newGame = new JButton("New Game");   //Button for new game
         private JButton loadGame = new JButton("Load Game"); //Button for load game
-        private newGAME newGAME = new newGAME();                                  //The New Game screen
-        private loadGAME loadGAME = new loadGAME();                                //The Load Game screeen
+        private newGAME newGAME = new newGAME();                 //The New Game screen
+        private loadGAME loadGAME = new loadGAME();              //The Load Game screeen
 
         /*Methods*/
         public MainMenu()
         {
+            super("Spark - Main menu");
             this.initComponents();
         }
 
@@ -48,16 +51,19 @@ public class SparkFrame
             newGame.addActionListener(e ->
             {
                 newGAME.setVisible(true);
-                loadGAME.setVisible(false);
             });
             loadGame.addActionListener(e ->
             {
                 loadGAME.setVisible(true);
-                newGAME.setVisible(false);
             });
 
             this.add(newGame);
             this.add(loadGame);
+
+            this.setSize(new Dimension(400, 300));
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setResizable(false);
+            this.setLocationRelativeTo(null);
         }
 
 
@@ -67,8 +73,8 @@ public class SparkFrame
         private class newGAME extends JFrame
         {
             /*Attributes*/
-            JTextField filename = new JTextField(20);
-            JButton start = new JButton("New Game");
+            JTextField filename = new JTextField(20);  //Filename textbox
+            JButton start = new JButton("New Game");     //Button for starting a new game
 
             /*Methods*/
 
@@ -77,6 +83,7 @@ public class SparkFrame
              */
             public newGAME()
             {
+                super("Spark - Start new game");
                 this.initComponents();
             }
 
@@ -104,6 +111,10 @@ public class SparkFrame
                 panel.add(start);
 
                 this.add(panel, BorderLayout.CENTER);
+                this.setSize(new Dimension(400, 80));
+                this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                this.setResizable(false);
+                this.setLocationRelativeTo(null);
             }
         }
 
@@ -123,6 +134,7 @@ public class SparkFrame
              */
             public loadGAME()
             {
+                super("Spark - Load existing game");
                 this.initComponents();
             }
 
@@ -139,6 +151,7 @@ public class SparkFrame
                 options = new JComboBox(files);
                 panel.add(options);
 
+
                 load.addActionListener(e ->
                 {
                     try
@@ -149,8 +162,14 @@ public class SparkFrame
                         JOptionPane.showMessageDialog(newGame, "Can't open file! Try again.");
                     }
                 });
+
                 panel.add(load);
+
                 this.add(panel, BorderLayout.CENTER);
+                this.setSize(new Dimension(400, 80));
+                this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                this.setResizable(false);
+                this.setLocationRelativeTo(null);
             }
         }
     }
@@ -160,6 +179,20 @@ public class SparkFrame
      */
     class GameFrame extends JFrame
     {
+        /*Attributes*/
+        private JTextPane quest_desc;   //A textpane for the quest description
+        private JButton A_button;       //Button for choosing transition A
+        private JButton B_button;       //Button for choosing transition B
 
+        /*Methods*/
+        public GameFrame()
+        {
+            this.initComponents();
+        }
+
+        private void initComponents()
+        {
+
+        }
     }
 }
