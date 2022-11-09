@@ -64,10 +64,6 @@ public class GameFile
      */
     public void loadGame(File name) throws IOException, ClassNotFoundException
     {
-        if (!name.getName().contains(".sprkdt"))
-        {
-            throw new IOException("Wrong file");
-        }
         queue = new QuestQueue();
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(name));
         queue = (QuestQueue) ois.readObject();

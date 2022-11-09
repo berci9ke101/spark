@@ -14,7 +14,12 @@ public class SparkFrame
 {
     /*Methods*/
 
-    public void initComponents()
+    public SparkFrame()
+    {
+        this.initComponents();
+    }
+
+    private void initComponents()
     {
         mainMenu = new MainMenu();
         mainMenu.setVisible(true);
@@ -105,6 +110,9 @@ public class SparkFrame
                     } catch (IOException ex)
                     {
                         JOptionPane.showMessageDialog(newGame, "No such file! Try again.");
+                    } catch (Exception ex)
+                    {
+                        JOptionPane.showMessageDialog(newGame, "Unknown error occurred! Try again.");
                     }
                 });
 
@@ -147,8 +155,10 @@ public class SparkFrame
 
                 JPanel panel = new JPanel();
                 File location = new File(System.getProperty("user.dir"));
-                File[] files = location.listFiles();
+                File[] files = location.listFiles((idc, fname) -> fname.endsWith(".sprkdt"));
+
                 options = new JComboBox(files);
+
                 panel.add(options);
 
 
@@ -187,6 +197,7 @@ public class SparkFrame
         /*Methods*/
         public GameFrame()
         {
+            super("Spark");
             this.initComponents();
         }
 
