@@ -10,9 +10,18 @@ import java.io.IOException;
  */
 public class SparkFrame
 {
+    /*Methods*/
+
+    public void initComponents()
+    {
+        mainMenu = new MainMenu();
+        mainMenu.setVisible(true);
+    }
+
     /*Attributes*/
     private GameFile GAME;              //The game file of the game
     private MainMenu mainMenu;          //The main menu of the game
+    private GameFrame gameFrame;        //The game frame
 
     /**
      * The Main Menu of the game
@@ -27,6 +36,11 @@ public class SparkFrame
         private loadGAME loadGAME = new loadGAME();                                //The Load Game screeen
 
         /*Methods*/
+        public MainMenu()
+        {
+            this.initComponents();
+        }
+
         private void initComponents()
         {
             this.setLayout(new GridLayout(2, 1));
@@ -143,6 +157,9 @@ public class SparkFrame
 
     /**
      * The Game Frame itself
-     * */
-    class
+     */
+    class GameFrame extends JFrame
+    {
+
+    }
 }
