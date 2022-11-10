@@ -46,17 +46,17 @@ public class GameFile
             String optB = data[5];
             int jmpB = Integer.parseInt(data[6]);
 
-            switch (data[1])
+            switch (data[1].toLowerCase())
             {
-                case "B":
+                case "b":
                     queue.add(new BasicQuest(ID, desc, optA, optB, jmpA, jmpB));
                     break;
-                case "V":
+                case "v":
                     int altjmp = Integer.parseInt(data[8]);
                     String altdsc = data[7];
                     queue.add(new VisitableQuest(ID, desc, optA, optB, jmpA, jmpB, altdsc, altjmp));
                     break;
-                case "R":
+                case "r":
                     queue.add(new RandomQuest(ID, desc, optA, optB, jmpA, jmpB));
                     break;
             }

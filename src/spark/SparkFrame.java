@@ -4,6 +4,7 @@ import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -22,11 +23,6 @@ public class SparkFrame
     private void initComponents()
     {
         mainMenu.setVisible(true);
-    }
-
-    public void updateGame()
-    {
-        gameFrame.updateComponents();
     }
 
     /*Attributes*/
@@ -111,6 +107,12 @@ public class SparkFrame
                     try
                     {
                         GAME.newGame(filename.getText());
+
+                        this.setVisible(false);
+                        mainMenu.setVisible(false);
+
+                        gameFrame.setVisible(true);
+                        gameFrame.updateComponents();
                     } catch (IOException ex)
                     {
                         JOptionPane.showMessageDialog(newGame, "No such file! Try again.");
@@ -171,10 +173,14 @@ public class SparkFrame
                     try
                     {
                         GAME.loadGame((File) options.getSelectedItem());
+                        this.setVisible(false);
+                        mainMenu.setVisible(false);
+
+                        gameFrame.setVisible(true);
+                        gameFrame.updateComponents();
                     } catch (Exception ex)
                     {
                         JOptionPane.showMessageDialog(newGame, "Can't open file! Try again.");
-                        gameFrame.setVisible(true);
                     }
                 });
 
@@ -234,7 +240,25 @@ public class SparkFrame
             A_button.setText(queue.getCurrent().getOptionA());
             B_button.setText(queue.getCurrent().getOptionB());
 
+            /*Cleanup*/
+            ActionListener[] alis = A_button.getActionListeners();
+            for (ActionListener e : alis)
+            {
+                A_button.removeActionListener(e);
+            }
 
+            ActionListener[] blis = B_button.getActionListeners();
+            for (ActionListener e : blis)
+            {
+                B_button.removeActionListener(e);
+            }
+
+            /*Setting up the good actionlisteners*/
+            A_button.addActionListener(e -> queue.chooseA());
+            A_button.addActionListener(e -> this.updateComponents());
+
+            B_button.addActionListener(e -> queue.chooseB());
+            B_button.addActionListener(e -> this.updateComponents());
         }
     }
 }
