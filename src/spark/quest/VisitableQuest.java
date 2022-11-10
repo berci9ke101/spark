@@ -42,9 +42,10 @@ public class VisitableQuest extends Quest
     {
         if (visited)
         {
-            Random rnd = new Random();
+            /*Random rnd = new Random();
             String[] opts = {"Head back.", "Leave.", "Go back.", "Go away."};
-            return opts[rnd.nextInt() % 4];
+            return opts[rnd.nextInt() % 4];*/
+            return "Go back.";
         }
         return super.getOptionA();
     }
@@ -59,9 +60,10 @@ public class VisitableQuest extends Quest
     {
         if (visited)
         {
-            Random rnd = new Random();
+           /* Random rnd = new Random();
             String[] opts = {"Head back.", "Leave.", "Go back.", "Go away."};
-            return opts[rnd.nextInt() % 4];
+            return opts[rnd.nextInt() % 4];*/
+            return "Go back.";
         }
         return super.getOptionB();
     }
