@@ -37,19 +37,37 @@ public class QuestQueue
     }
 
     /**
-     * Chooses the current Quest's A's transition and transitions there
+     * Chooses the current Quest's A's transition and transitions there.
+     * If the transition ID is '-1' exits.
      */
     public void chooseA()
     {
-        current_state = this.at(current_state).getJumpA();
+        int transfer = this.at(current_state).getJumpA();
+        if (transfer != -1)
+        {
+            current_state = transfer;
+        }
+        else
+        {
+            System.exit(0);
+        }
     }
 
     /**
      * Chooses the current Quest's B's transition and transitions there
+     * If the transition ID is '-1' exits.
      */
     public void chooseB()
     {
-        current_state = this.at(current_state).getJumpB();
+        int transfer = this.at(current_state).getJumpB();
+        if (transfer != -1)
+        {
+            current_state = transfer;
+        }
+        else
+        {
+            System.exit(0);
+        }
     }
 
     /**

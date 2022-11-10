@@ -236,6 +236,7 @@ public class SparkFrame
         {
             QuestQueue queue = GAME.getQueue();
 
+            /*Setting up text*/
             quest_desc.setText(queue.getCurrent().getDesc());
             A_button.setText(queue.getCurrent().getOptionA());
             B_button.setText(queue.getCurrent().getOptionB());
@@ -254,11 +255,17 @@ public class SparkFrame
             }
 
             /*Setting up the good actionlisteners*/
-            A_button.addActionListener(e -> queue.chooseA());
-            A_button.addActionListener(e -> this.updateComponents());
+            A_button.addActionListener(e ->
+            {
+                queue.chooseA();
+                this.updateComponents();
+            });
 
-            B_button.addActionListener(e -> queue.chooseB());
-            B_button.addActionListener(e -> this.updateComponents());
+            B_button.addActionListener(e ->
+            {
+                queue.chooseB();
+                this.updateComponents();
+            });
         }
     }
 }
