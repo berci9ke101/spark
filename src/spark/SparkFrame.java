@@ -1,7 +1,5 @@
 package spark;
 
-import com.sun.tools.javac.Main;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -14,9 +12,9 @@ import java.io.IOException;
 public class SparkFrame
 {
     /*Attributes*/
-    private GameFile GAME = new GameFile();              //The game file of the game (and also the game logic)
-    private MainMenu mainMenu = new MainMenu();          //The main menu of the game
-    private GameFrame gameFrame = new GameFrame();       //The game frame
+    private final GameFile GAME = new GameFile();              //The game file of the game (and also the game logic)
+    private final MainMenu mainMenu = new MainMenu();          //The main menu of the game
+    private final GameFrame gameFrame = new GameFrame();       //The game frame
 
     /*Methods*/
 
@@ -43,10 +41,10 @@ public class SparkFrame
     {
         /*Attributes*/
 
-        private JButton newGame = new JButton("New Game");   //Button for new game
-        private JButton loadGame = new JButton("Load Game"); //Button for load game
-        private newGAME newGAME = new newGAME();                 //The New Game screen
-        private loadGAME loadGAME = new loadGAME();              //The Load Game screeen
+        private final JButton newGame = new JButton("New Game");   //Button for new game
+        private final JButton loadGame = new JButton("Load Game"); //Button for load game
+        private final newGAME newGAME = new newGAME();                 //The New Game screen
+        private final loadGAME loadGAME = new loadGAME();              //The Load Game screeen
 
         /*Methods*/
 
@@ -113,6 +111,27 @@ public class SparkFrame
                 this.setLayout(new BorderLayout());
 
                 JPanel panel = new JPanel();
+
+                filename.addActionListener(e ->
+                {
+                    try
+                    {
+                        GAME.newGame(filename.getText());
+
+                        this.setVisible(false);
+                        mainMenu.setVisible(false);
+
+                        gameFrame.setVisible(true);
+                        gameFrame.updateComponents();
+                    } catch (IOException ex)
+                    {
+                        JOptionPane.showMessageDialog(newGame, "      No such file!  Try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                    } catch (Exception ex)
+                    {
+                        JOptionPane.showMessageDialog(newGame, "Unknown error occurred! Try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                });
+
                 panel.add(filename);
 
                 start.addActionListener(e ->
@@ -128,15 +147,16 @@ public class SparkFrame
                         gameFrame.updateComponents();
                     } catch (IOException ex)
                     {
-                        JOptionPane.showMessageDialog(newGame, "No such file! Try again.");
+                        JOptionPane.showMessageDialog(newGame, "      No such file!  Try again.", "Error", JOptionPane.ERROR_MESSAGE);
                     } catch (Exception ex)
                     {
-                        JOptionPane.showMessageDialog(newGame, "Unknown error occurred! Try again.");
+                        JOptionPane.showMessageDialog(newGame, "Unknown error occurred! Try again.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 });
 
                 panel.add(start);
 
+                /*Setting frame parameters*/
                 this.add(panel, BorderLayout.CENTER);
                 this.setSize(new Dimension(400, 80));
                 this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -151,8 +171,8 @@ public class SparkFrame
         private class loadGAME extends JFrame
         {
             /*Attributes*/
-            private JButton load = new JButton("Load");       //Load button
-            private JComboBox options;                            //List of the available game files
+            private final JButton load = new JButton("Load");       //Load button
+            private JComboBox options;                                   //List of the available game files
 
             /*Methods*/
 
@@ -191,14 +211,18 @@ public class SparkFrame
 
                         gameFrame.setVisible(true);
                         gameFrame.updateComponents();
+                    } catch (IOException ex)
+                    {
+                        JOptionPane.showMessageDialog(newGame, "   Can't open file!  Try again.", "Error", JOptionPane.ERROR_MESSAGE);
                     } catch (Exception ex)
                     {
-                        JOptionPane.showMessageDialog(newGame, "Can't open file! Try again.");
+                        JOptionPane.showMessageDialog(newGame, "Unknown error occurred! Try again.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 });
 
                 panel.add(load);
 
+                /*Setting frame parameters*/
                 this.add(panel, BorderLayout.CENTER);
                 this.setSize(new Dimension(400, 80));
                 this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -214,9 +238,10 @@ public class SparkFrame
     class GameFrame extends JFrame
     {
         /*Attributes*/
-        private JTextArea quest_desc = new JTextArea("%placeholder%");      //A textpane for the quest description
-        private JButton A_button = new JButton("%placeholder%");       //Button for choosing transition A
-        private JButton B_button = new JButton("%placeholder%");       //Button for choosing transition B
+        private final JTextArea quest_desc = new JTextArea("%placeholder%");      //A textpane for the quest description
+        private final JButton A_button = new JButton("%placeholder%");       //Button for choosing transition A
+        private final JButton B_button = new JButton("%placeholder%");       //Button for choosing transition B
+        private final JMenuBar menubar = new JMenuBar();                          //Menubar of the frame
 
         /*Methods*/
 
@@ -241,11 +266,37 @@ public class SparkFrame
             /*Restrictions*/
             quest_desc.setEditable(false);
 
+            /*Menubar*/
+            JMenu file = new JMenu("File");
+            menubar.add(file);
+            JMenuItem save = new JMenuItem("Save game");
+            JMenuItem exit = new JMenuItem("Exit without saving");
+
+            /*Save dialog box*/
+            save.addActionListener(e ->
+            {
+                try
+                {
+                    GAME.saveGame(JOptionPane.showInputDialog(this, "What should be the save file's name?", "Save Game", JOptionPane.QUESTION_MESSAGE));
+                } catch (Exception ex)
+                {
+                    JOptionPane.showMessageDialog(this, "File couldn't be saved! Try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            });
+
+            /*Exit game*/
+            exit.addActionListener(e -> System.exit(0));
+
+            /*Adding the components*/
+            file.add(save);
+            file.add(exit);
             this.add(quest_desc);
             panel.add(A_button);
             panel.add(B_button);
             this.add(panel, BorderLayout.PAGE_END);
+            this.add(menubar, BorderLayout.NORTH);
 
+            /*Setting frame parameters*/
             this.setSize(new Dimension(600, 450));
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setResizable(false);
@@ -277,7 +328,7 @@ public class SparkFrame
                 B_button.removeActionListener(e);
             }
 
-            /*Setting up the good actionlisteners*/
+            /*Setting up the good action listeners*/
             A_button.addActionListener(e ->
             {
                 queue.chooseA();

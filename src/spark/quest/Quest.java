@@ -1,9 +1,11 @@
 package spark.quest;
 
+import java.io.Serializable;
+
 /**
  * Default abstract Quest class
  * */
-abstract public class Quest
+abstract public class Quest implements Serializable
 {
     /*Attributes*/
 
