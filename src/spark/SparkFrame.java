@@ -13,22 +13,28 @@ import java.io.IOException;
  */
 public class SparkFrame
 {
+    /*Attributes*/
+    private GameFile GAME = new GameFile();              //The game file of the game (and also the game logic)
+    private MainMenu mainMenu = new MainMenu();          //The main menu of the game
+    private GameFrame gameFrame = new GameFrame();       //The game frame
+
     /*Methods*/
 
+    /**
+     * Constructor
+     */
     public SparkFrame()
     {
         this.initComponents();
     }
 
+    /**
+     * Initializes the components
+     */
     private void initComponents()
     {
         mainMenu.setVisible(true);
     }
-
-    /*Attributes*/
-    private GameFile GAME = new GameFile();              //The game file of the game (and also the game logic)
-    private MainMenu mainMenu = new MainMenu();          //The main menu of the game
-    private GameFrame gameFrame = new GameFrame();       //The game frame
 
     /**
      * The Main Menu of the game
@@ -43,12 +49,19 @@ public class SparkFrame
         private loadGAME loadGAME = new loadGAME();              //The Load Game screeen
 
         /*Methods*/
+
+        /**
+         * Constructor
+         */
         public MainMenu()
         {
             super("Spark - Main menu");
             this.initComponents();
         }
 
+        /**
+         * Initializes the components
+         */
         private void initComponents()
         {
             this.setLayout(new GridLayout(2, 1));
@@ -206,12 +219,19 @@ public class SparkFrame
         private JButton B_button = new JButton("%placeholder%");       //Button for choosing transition B
 
         /*Methods*/
+
+        /**
+         * Constructor
+         */
         public GameFrame()
         {
             super("Spark");
             this.initComponents();
         }
 
+        /**
+         * Initializes the components
+         */
         private void initComponents()
         {
             this.setLayout(new BorderLayout());
@@ -232,6 +252,9 @@ public class SparkFrame
             this.setLocationRelativeTo(null);
         }
 
+        /**
+         * Updates the components
+         */
         private void updateComponents()
         {
             QuestQueue queue = GAME.getQueue();

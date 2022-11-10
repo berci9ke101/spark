@@ -1,7 +1,7 @@
 package spark;
 
 import spark.quest.*;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * This class stores the Quests and manages the transitions
  */
-public class QuestQueue
+public class QuestQueue implements Serializable
 {
     /*Attributes*/
 
