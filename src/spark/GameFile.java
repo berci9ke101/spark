@@ -15,6 +15,16 @@ public class GameFile
     /*Methods*/
 
     /**
+     * Getter for the queue
+     *
+     * @return the queue of the game
+     * */
+    public QuestQueue getQueue()
+    {
+        return queue;
+    }
+
+    /**
      * Starts a new game from a given file.
      *
      * @param name The name of the gamefile
@@ -52,6 +62,8 @@ public class GameFile
             }
         }
         read.close();
+
+        queue.sort();
     }
 
 
@@ -68,6 +80,7 @@ public class GameFile
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(name));
         queue = (QuestQueue) ois.readObject();
         ois.close();
+        queue.sort();
     }
 
     /**

@@ -33,7 +33,7 @@ public class QuestQueue
      */
     public void sort()
     {
-        Collections.sort(queue, (q1, q2) -> (int) (q1.getID() - q2.getID()));
+        Collections.sort(queue, (q1, q2) -> (q1.getID() - q2.getID()));
     }
 
     /**
@@ -67,8 +67,18 @@ public class QuestQueue
      *
      * @return The Quest object at the given index
      */
-    public Quest at(int index)
+    private Quest at(int index)
     {
         return queue.get(index);
+    }
+
+    /**
+     * Returns the current quest
+     *
+     * @return The current Quest object
+     */
+    public Quest getCurrent()
+    {
+        return this.at(current_state);
     }
 }

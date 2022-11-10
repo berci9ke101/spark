@@ -24,8 +24,13 @@ public class SparkFrame
         mainMenu.setVisible(true);
     }
 
+    public void updateGame()
+    {
+        gameFrame.updateComponents();
+    }
+
     /*Attributes*/
-    private GameFile GAME = new GameFile();              //The game file of the game
+    private GameFile GAME = new GameFile();              //The game file of the game (and also the game logic)
     private MainMenu mainMenu = new MainMenu();          //The main menu of the game
     private GameFrame gameFrame = new GameFrame();       //The game frame
 
@@ -166,7 +171,6 @@ public class SparkFrame
                     try
                     {
                         GAME.loadGame((File) options.getSelectedItem());
-                        gameFrame.setVisible(true);
                     } catch (Exception ex)
                     {
                         JOptionPane.showMessageDialog(newGame, "Can't open file! Try again.");
@@ -191,7 +195,7 @@ public class SparkFrame
     class GameFrame extends JFrame
     {
         /*Attributes*/
-        private JTextArea quest_desc = new JTextArea("");   //A textpane for the quest description
+        private JTextArea quest_desc = new JTextArea("%placeholder%");      //A textpane for the quest description
         private JButton A_button = new JButton("%placeholder%");       //Button for choosing transition A
         private JButton B_button = new JButton("%placeholder%");       //Button for choosing transition B
 
@@ -220,6 +224,17 @@ public class SparkFrame
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setResizable(false);
             this.setLocationRelativeTo(null);
+        }
+
+        private void updateComponents()
+        {
+            QuestQueue queue = GAME.getQueue();
+
+            quest_desc.setText(queue.getCurrent().getDesc());
+            A_button.setText(queue.getCurrent().getOptionA());
+            B_button.setText(queue.getCurrent().getOptionB());
+
+
         }
     }
 }
