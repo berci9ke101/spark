@@ -1,8 +1,10 @@
 package spark.quest;
 
+import java.util.Random;
+
 /**
  * A Quest that, displays an alternative description and offers an alternative transition if it was visited
- * */
+ */
 public class VisitableQuest extends Quest
 {
     /*Attributes*/
@@ -31,6 +33,40 @@ public class VisitableQuest extends Quest
     }
 
     /**
+     * Getter for OptionA
+     *
+     * @return The text for option A
+     */
+    @Override
+    public String getOptionA()
+    {
+        if (visited)
+        {
+            Random rnd = new Random();
+            String[] opts = {"Head back.", "Leave.", "Go back.", "Go away."};
+            return opts[rnd.nextInt() % 4];
+        }
+        return super.getOptionA();
+    }
+
+    /**
+     * Getter for OptionB
+     *
+     * @return The text for option B
+     */
+    @Override
+    public String getOptionB()
+    {
+        if (visited)
+        {
+            Random rnd = new Random();
+            String[] opts = {"Head back.", "Leave.", "Go back.", "Go away."};
+            return opts[rnd.nextInt() % 4];
+        }
+        return super.getOptionB();
+    }
+
+    /**
      * Getter for Description
      *
      * @return The alternative description of the Quest if it was visited, or the super's description if it wasn't
@@ -42,15 +78,14 @@ public class VisitableQuest extends Quest
         {
             return alternatedesc;
         }
-        this.visited = true;
         return super.getDesc();
     }
 
     /**
      * Getter for JumpA ID
-     * @\\
-     * If it was the first visit it sets the visited attribute to true.
+     *
      * @return The ID where the Quest alternate jumps to or super's A option's ID
+     * @\\ If it was the first visit it sets the visited attribute to true.
      */
     @Override
     public int getJumpA()
@@ -64,10 +99,10 @@ public class VisitableQuest extends Quest
     }
 
     /**
-     Getter for JumpB ID
-     * @\\
-     * If it was the first visit it sets the visited attribute to true.
+     * Getter for JumpB ID
+     *
      * @return The ID where the Quest alternate jumps to or super's B option's ID
+     * @\\ If it was the first visit it sets the visited attribute to true.
      */
     @Override
     public int getJumpB()
@@ -76,6 +111,7 @@ public class VisitableQuest extends Quest
         {
             return alternatejump;
         }
+        this.visited = true;
         return super.getJumpB();
     }
 }
