@@ -21,14 +21,13 @@ public class SparkFrame
 
     private void initComponents()
     {
-        mainMenu = new MainMenu();
         mainMenu.setVisible(true);
     }
 
     /*Attributes*/
     private GameFile GAME = new GameFile();              //The game file of the game
-    private MainMenu mainMenu;          //The main menu of the game
-    private GameFrame gameFrame;        //The game frame
+    private MainMenu mainMenu = new MainMenu();          //The main menu of the game
+    private GameFrame gameFrame = new GameFrame();       //The game frame
 
     /**
      * The Main Menu of the game
@@ -167,9 +166,11 @@ public class SparkFrame
                     try
                     {
                         GAME.loadGame((File) options.getSelectedItem());
+                        gameFrame.setVisible(true);
                     } catch (Exception ex)
                     {
                         JOptionPane.showMessageDialog(newGame, "Can't open file! Try again.");
+                        gameFrame.setVisible(true);
                     }
                 });
 
@@ -190,9 +191,9 @@ public class SparkFrame
     class GameFrame extends JFrame
     {
         /*Attributes*/
-        private JTextPane quest_desc;   //A textpane for the quest description
-        private JButton A_button;       //Button for choosing transition A
-        private JButton B_button;       //Button for choosing transition B
+        private JTextArea quest_desc = new JTextArea("");   //A textpane for the quest description
+        private JButton A_button = new JButton("%placeholder%");       //Button for choosing transition A
+        private JButton B_button = new JButton("%placeholder%");       //Button for choosing transition B
 
         /*Methods*/
         public GameFrame()
@@ -203,7 +204,22 @@ public class SparkFrame
 
         private void initComponents()
         {
+            this.setLayout(new BorderLayout());
+            JPanel panel = new JPanel();
+            panel.setLayout(new GridLayout(1, 2));
 
+            /*Restrictions*/
+            quest_desc.setEditable(false);
+
+            this.add(quest_desc);
+            panel.add(A_button);
+            panel.add(B_button);
+            this.add(panel, BorderLayout.PAGE_END);
+
+            this.setSize(new Dimension(600, 450));
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setResizable(false);
+            this.setLocationRelativeTo(null);
         }
     }
 }
