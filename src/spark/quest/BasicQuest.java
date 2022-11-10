@@ -1,7 +1,5 @@
 package spark.quest;
 
-import java.io.Serializable;
-
 /**
  * A simple Quest class, that fully implements the Quest class
  * */

@@ -3,7 +3,6 @@ package spark;
 import spark.quest.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -13,7 +12,7 @@ public class QuestQueue implements Serializable
 {
     /*Attributes*/
 
-    private List<Quest> queue = new ArrayList<>();      //The list that stores the Quest objects
+    private final List<Quest> queue = new ArrayList<>();      //The list that stores the Quest objects
     private int current_state = 0;                      //Stores the state, that the queue is currently in
 
     /*Methods*/
@@ -33,7 +32,7 @@ public class QuestQueue implements Serializable
      */
     public void sort()
     {
-        Collections.sort(queue, (q1, q2) -> (q1.getID() - q2.getID()));
+        queue.sort((q1, q2) -> (q1.getID() - q2.getID()));
     }
 
     /**
@@ -68,16 +67,6 @@ public class QuestQueue implements Serializable
         {
             System.exit(0);
         }
-    }
-
-    /**
-     * Returns the current state
-     *
-     * @return The current state
-     */
-    public int getCurrent_state()
-    {
-        return current_state;
     }
 
     /**

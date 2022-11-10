@@ -91,7 +91,7 @@ public class GameFile
      */
     public void saveGame(String name) throws IOException
     {
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(name += ".sprkdt"));
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(name + ".sprkdt"));
         oos.writeObject(queue);
         oos.close();
     }
