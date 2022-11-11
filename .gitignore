@@ -3,3 +3,4 @@ out
 spark.iml
 img/psd
 load
+*.sprkdt

@@ -13,10 +13,10 @@ import java.io.IOException;
 public class SparkFrame
 {
     /*Attributes*/
-    private final GameFile GAME;              //The game file of the game (and also the game logic)
-    private final MainMenu mainMenu;          //The main menu of the game
-    private final GameFrame gameFrame;       //The game frame
-    private float[] hsb = {0.0f, 0.0f, 0.93333334f};           //HSB value of the background colour
+    private final GameFile GAME;                               //The game file of the game (and also the game logic)
+    private final MainMenu mainMenu;                           //The main menu of the game
+    private final GameFrame gameFrame;                         //The game frame
+    private final float[] hsb = {0.0f, 0.0f, 0.93333334f};     //HSB value of the background colour
 
     /*Methods*/
 
@@ -28,6 +28,17 @@ public class SparkFrame
         GAME = new GameFile();
         mainMenu = new MainMenu();
         gameFrame = new GameFrame();
+
+        /*Registering the custom font*/
+        try
+        {
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("ttf/VCR_OSD_MONO_1.001.ttf")));
+        } catch (Exception e)
+        {
+            /*progress anyway*/
+        }
+        //SRC:  https://docs.oracle.com/javase/tutorial/2d/text/fonts.html
 
         this.initComponents();
     }
@@ -47,10 +58,10 @@ public class SparkFrame
     {
         /*Attributes*/
 
-        private final JButton newGame = new JButton("New Game");   //Button for new game
-        private final JButton loadGame = new JButton("Load Game"); //Button for load game
+        private final JButton newGame = new JButton();                 //Button for new game
+        private final JButton loadGame = new JButton();                //Button for load game
         private final newGAME newGAME = new newGAME();                 //The New Game screen
-        private final loadGAME loadGAME = new loadGAME();              //The Load Game screeen
+        private final loadGAME loadGAME = new loadGAME();              //The Load Game screen
 
         /*Methods*/
 
@@ -81,37 +92,47 @@ public class SparkFrame
 
             /*Menu Picture*/
             JPanel picture = new JPanel(new BorderLayout());
-            JLabel pic = new JLabel("", SwingConstants.CENTER);
-            JLabel pic1 = new JLabel("SPARK", SwingConstants.CENTER);
+
+            /*Custom labels in case of images not loading*/
+            JLabel spark_menu = new JLabel("SPARK", SwingConstants.CENTER);
+            spark_menu.setFont(new Font("VCR OSD MONO", Font.PLAIN, 35));
+
+            JLabel new_game = new JLabel("New Game", SwingConstants.CENTER);
+            new_game.setFont(new Font("VCR OSD MONO", Font.PLAIN, 20));
+
+            JLabel load_game = new JLabel("Load Game", SwingConstants.CENTER);
+            load_game.setFont(new Font("VCR OSD MONO", Font.PLAIN, 20));
+
+            /*Trying to set up images*/
             try
             {
-                pic1 = new JLabel(new ImageIcon(ImageIO.read(new File("img/menu.png"))));
+                spark_menu = new JLabel(new ImageIcon(ImageIO.read(new File("img/menu.png"))));
             } catch (IOException e)
             {
                 /*Progress anyway*/
             }
-            picture.add(pic1, BorderLayout.CENTER);
+            picture.add(spark_menu, BorderLayout.CENTER);
 
             /*New Game button*/
             try
             {
-                pic = new JLabel(new ImageIcon(ImageIO.read(new File("img/new_game.png"))));
+                new_game = new JLabel(new ImageIcon(ImageIO.read(new File("img/new_game.png"))));
             } catch (IOException e)
             {
                 /*Progress anyway*/
             }
-            newGame.add(pic, BorderLayout.CENTER);
-            newGame.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2])); //color setting
+            newGame.add(new_game);
+            newGame.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));  //color setting
 
             /*Load Game Button*/
             try
             {
-                pic = new JLabel(new ImageIcon(ImageIO.read(new File("img/load_game.png"))));
+                load_game = new JLabel(new ImageIcon(ImageIO.read(new File("img/load_game.png"))));
             } catch (IOException e)
             {
                 /*Progress anyway*/
             }
-            loadGame.add(pic, BorderLayout.CENTER);
+            loadGame.add(load_game);
             loadGame.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));  //color setting
 
             this.add(picture);
@@ -132,7 +153,7 @@ public class SparkFrame
         {
             /*Attributes*/
             JTextField filename = new JTextField(20);  //Filename textbox
-            JButton start = new JButton("New Game");     //Button for starting a new game
+            JButton start = new JButton("Nem Game");      //Button for starting a new game
 
             /*Methods*/
 
@@ -196,6 +217,12 @@ public class SparkFrame
                     }
                 });
 
+                /*Button background*/
+                newGame.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2])); //color setting
+
+                /*Button Font*/
+                start.setFont(new Font("VCR OSD MONO", Font.PLAIN, 15));
+
                 panel.add(start);
 
                 /*Setting frame parameters*/
@@ -214,7 +241,7 @@ public class SparkFrame
         {
             /*Attributes*/
             private final JButton load = new JButton("Load");       //Load button
-            private JComboBox options;                                   //List of the available game files
+            private JComboBox options;                                  //List of the available game files
 
             /*Methods*/
 
@@ -262,6 +289,8 @@ public class SparkFrame
                     }
                 });
 
+                /*Button Font*/
+                load.setFont(new Font("VCR OSD MONO", Font.PLAIN, 15));
                 panel.add(load);
 
                 /*Setting frame parameters*/
@@ -328,6 +357,11 @@ public class SparkFrame
 
             /*Exit game*/
             exit.addActionListener(e -> System.exit(0));
+
+            /*Button Fonts*/
+            A_button.setFont(new Font("VCR OSD MONO", Font.PLAIN, 13));
+            B_button.setFont(new Font("VCR OSD MONO", Font.PLAIN, 13));
+            quest_desc.setFont(new Font("VCR OSD MONO", Font.PLAIN, 13));
 
             /*Adding the components*/
             file.add(save);
