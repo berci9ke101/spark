@@ -222,6 +222,7 @@ public class SparkFrame
 
                 /*Button Font*/
                 start.setFont(new Font("VCR OSD MONO", Font.PLAIN, 15));
+                start.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));  //color setting
 
                 panel.add(start);
 
@@ -291,6 +292,8 @@ public class SparkFrame
 
                 /*Button Font*/
                 load.setFont(new Font("VCR OSD MONO", Font.PLAIN, 15));
+                load.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));  //color setting
+
                 panel.add(load);
 
                 /*Setting frame parameters*/
@@ -390,6 +393,9 @@ public class SparkFrame
             quest_desc.setText(queue.getCurrent().getDesc());
             A_button.setText(queue.getCurrent().getOptionA());
             B_button.setText(queue.getCurrent().getOptionB());
+
+            A_button.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));  //color setting
+            B_button.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));  //color setting
 
             /*Cleanup*/
             ActionListener[] alis = A_button.getActionListeners();
