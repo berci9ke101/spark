@@ -4,8 +4,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 
@@ -15,9 +13,10 @@ import java.io.IOException;
 public class SparkFrame
 {
     /*Attributes*/
-    private final GameFile GAME = new GameFile();              //The game file of the game (and also the game logic)
-    private final MainMenu mainMenu = new MainMenu();          //The main menu of the game
-    private final GameFrame gameFrame = new GameFrame();       //The game frame
+    private final GameFile GAME;              //The game file of the game (and also the game logic)
+    private final MainMenu mainMenu;          //The main menu of the game
+    private final GameFrame gameFrame;       //The game frame
+    private float[] hsb = {0.0f, 0.0f, 0.93333334f};           //HSB value of the background colour
 
     /*Methods*/
 
@@ -26,6 +25,10 @@ public class SparkFrame
      */
     public SparkFrame()
     {
+        GAME = new GameFile();
+        mainMenu = new MainMenu();
+        gameFrame = new GameFrame();
+
         this.initComponents();
     }
 
@@ -65,11 +68,6 @@ public class SparkFrame
          */
         private void initComponents()
         {
-            /*The background color*/
-            float[] hsb = new float[3];
-            Color.RGBtoHSB(238, 238, 238, hsb);
-
-            /*Inits*/
             this.setLayout(new GridLayout(3, 1));
 
             newGame.addActionListener(e ->
@@ -83,15 +81,16 @@ public class SparkFrame
 
             /*Menu Picture*/
             JPanel picture = new JPanel(new BorderLayout());
-            JLabel pic = new JLabel("SPARK", SwingConstants.CENTER);
+            JLabel pic = new JLabel("", SwingConstants.CENTER);
+            JLabel pic1 = new JLabel("SPARK", SwingConstants.CENTER);
             try
             {
-                pic = new JLabel(new ImageIcon(ImageIO.read(new File("img/menu.png"))));
+                pic1 = new JLabel(new ImageIcon(ImageIO.read(new File("img/menu.png"))));
             } catch (IOException e)
             {
                 /*Progress anyway*/
             }
-            picture.add(pic, BorderLayout.CENTER);
+            picture.add(pic1, BorderLayout.CENTER);
 
             /*New Game button*/
             try
