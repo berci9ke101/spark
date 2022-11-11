@@ -65,6 +65,11 @@ public class SparkFrame
          */
         private void initComponents()
         {
+            /*The background color*/
+            float[] hsb = new float[3];
+            Color.RGBtoHSB(238, 238, 238, hsb);
+
+            /*Inits*/
             this.setLayout(new GridLayout(3, 1));
 
             newGame.addActionListener(e ->
@@ -97,12 +102,24 @@ public class SparkFrame
                 /*Progress anyway*/
             }
             newGame.add(pic, BorderLayout.CENTER);
+            newGame.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2])); //color setting
+
+            /*Load Game Button*/
+            try
+            {
+                pic = new JLabel(new ImageIcon(ImageIO.read(new File("img/load_game.png"))));
+            } catch (IOException e)
+            {
+                /*Progress anyway*/
+            }
+            loadGame.add(pic, BorderLayout.CENTER);
+            loadGame.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));  //color setting
 
             this.add(picture);
             this.add(newGame);
             this.add(loadGame);
 
-            this.setSize(new Dimension(400, 300));
+            this.setSize(new Dimension(420, 300));
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setResizable(false);
             this.setLocationRelativeTo(null);
