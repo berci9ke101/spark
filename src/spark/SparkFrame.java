@@ -1,8 +1,11 @@
 package spark;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 
@@ -62,7 +65,7 @@ public class SparkFrame
          */
         private void initComponents()
         {
-            this.setLayout(new GridLayout(2, 1));
+            this.setLayout(new GridLayout(3, 1));
 
             newGame.addActionListener(e ->
             {
@@ -73,6 +76,29 @@ public class SparkFrame
                 loadGAME.setVisible(true);
             });
 
+            /*Menu Picture*/
+            JPanel picture = new JPanel(new BorderLayout());
+            JLabel pic = new JLabel("SPARK", SwingConstants.CENTER);
+            try
+            {
+                pic = new JLabel(new ImageIcon(ImageIO.read(new File("img/menu.png"))));
+            } catch (IOException e)
+            {
+                /*Progress anyway*/
+            }
+            picture.add(pic, BorderLayout.CENTER);
+
+            /*New Game button*/
+            try
+            {
+                pic = new JLabel(new ImageIcon(ImageIO.read(new File("img/new_game.png"))));
+            } catch (IOException e)
+            {
+                /*Progress anyway*/
+            }
+            newGame.add(pic, BorderLayout.CENTER);
+
+            this.add(picture);
             this.add(newGame);
             this.add(loadGame);
 
