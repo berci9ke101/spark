@@ -9,12 +9,12 @@ abstract public class Quest implements Serializable
 {
     /*Attributes*/
 
-    private int ID = -1;           //The id of the quest
-    private String Desc = "";      //The description of the quest
-    private String OptionA = "";   //The text for option A
-    private String OptionB = "";   //The text for option B
-    private int JumpA = -1;        //The transition ID for option A
-    private int JumpB = -1;        //The transition ID for option B
+    private final int ID;           //The id of the quest
+    private final String Desc;      //The description of the quest
+    private final String OptionA;   //The text for option A
+    private final String OptionB;   //The text for option B
+    private final int JumpA;        //The transition ID for option A
+    private final int JumpB;        //The transition ID for option B
 
     /*Methods*/
 
