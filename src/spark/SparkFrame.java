@@ -16,7 +16,6 @@ public class SparkFrame
     private final GameFile GAME;                               //The game file of the game (and also the game logic)
     private final MainMenu mainMenu;                           //The main menu of the game
     private final GameFrame gameFrame;                         //The game frame
-    private final float[] hsb = {0.0f, 0.0f, 0.93333334f};     //HSB value of the background colour
 
     /*Methods*/
 
@@ -79,6 +78,11 @@ public class SparkFrame
          */
         private void initComponents()
         {
+            /*Magic Constants*/
+            float[] hsb = {0.0f, 0.0f, 0.93333334f};     //HSB value of the background colour
+
+
+            /*Init with Grid*/
             this.setLayout(new GridLayout(3, 1));
 
             newGame.addActionListener(e ->
