@@ -302,8 +302,8 @@ public class SparkFrame
     {
         /*Attributes*/
         private final JTextArea quest_desc = new JTextArea("%placeholder%");                      //A textpane for the quest description
-        private final JButton A_button = new SparkJButton("%placeholder%", 13);       //Button for choosing transition A
-        private final JButton B_button = new SparkJButton("%placeholder%", 13);       //Button for choosing transition B
+        private final JButton A_button = new SparkJButton("%placeholder%", 18);       //Button for choosing transition A
+        private final JButton B_button = new SparkJButton("%placeholder%", 18);       //Button for choosing transition B
         private final JMenuBar menubar = new JMenuBar();                                          //Menubar of the frame
 
         /*Methods*/
@@ -328,6 +328,8 @@ public class SparkFrame
 
             /*Restrictions*/
             quest_desc.setEditable(false);
+            quest_desc.setLineWrap(true);
+            quest_desc.setWrapStyleWord(true);
 
             /*Menubar*/
             JMenu file = new JMenu("File");
@@ -351,7 +353,7 @@ public class SparkFrame
             exit.addActionListener(e -> System.exit(0));
 
             /*Font*/
-            quest_desc.setFont(new Font("VCR OSD MONO", Font.PLAIN, 13));
+            quest_desc.setFont(new Font("Arial", Font.PLAIN, 18));
 
             /*Adding the components*/
             file.add(save);

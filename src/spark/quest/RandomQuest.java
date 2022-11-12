@@ -10,7 +10,7 @@ import java.util.Random;
 public class RandomQuest extends Quest
 {
     /*Attributes*/
-    private final List<String> descriptions;
+    private final List<String> descriptions;        //Pool of descriptions
 
     /*Methods*/
 
