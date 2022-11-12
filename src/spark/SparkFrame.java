@@ -104,6 +104,7 @@ public class SparkFrame
             load_game.setFont(new Font("VCR OSD MONO", Font.PLAIN, 20));
 
             /*Trying to set up images*/
+            /*Main Menu image*/
             try
             {
                 spark_menu = new JLabel(new ImageIcon(ImageIO.read(new File("img/menu.png"))));
