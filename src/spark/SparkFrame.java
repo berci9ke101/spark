@@ -152,8 +152,8 @@ public class SparkFrame
         private class newGAME extends JFrame
         {
             /*Attributes*/
-            JTextField filename = new JTextField(20);  //Filename textbox
-            JButton start = new JButton("Nem Game");      //Button for starting a new game
+            JTextField filename = new JTextField(20);                  //Filename textbox
+            JButton start = new SparkJButton("New Game", 15);      //Button for starting a new game
 
             /*Methods*/
 
@@ -217,13 +217,6 @@ public class SparkFrame
                     }
                 });
 
-                /*Button background*/
-                newGame.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2])); //color setting
-
-                /*Button Font*/
-                start.setFont(new Font("VCR OSD MONO", Font.PLAIN, 15));
-                start.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));  //color setting
-
                 panel.add(start);
 
                 /*Setting frame parameters*/
@@ -241,8 +234,8 @@ public class SparkFrame
         private class loadGAME extends JFrame
         {
             /*Attributes*/
-            private final JButton load = new JButton("Load");       //Load button
-            private JComboBox options;                                  //List of the available game files
+            private final JButton load = new SparkJButton("Load", 15);       //Load button
+            private JComboBox options;                                                   //List of the available game files
 
             /*Methods*/
 
@@ -270,7 +263,6 @@ public class SparkFrame
 
                 panel.add(options);
 
-
                 load.addActionListener(e ->
                 {
                     try
@@ -290,10 +282,6 @@ public class SparkFrame
                     }
                 });
 
-                /*Button Font*/
-                load.setFont(new Font("VCR OSD MONO", Font.PLAIN, 15));
-                load.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));  //color setting
-
                 panel.add(load);
 
                 /*Setting frame parameters*/
@@ -312,10 +300,10 @@ public class SparkFrame
     class GameFrame extends JFrame
     {
         /*Attributes*/
-        private final JTextArea quest_desc = new JTextArea("%placeholder%");      //A textpane for the quest description
-        private final JButton A_button = new JButton("%placeholder%");       //Button for choosing transition A
-        private final JButton B_button = new JButton("%placeholder%");       //Button for choosing transition B
-        private final JMenuBar menubar = new JMenuBar();                          //Menubar of the frame
+        private final JTextArea quest_desc = new JTextArea("%placeholder%");                      //A textpane for the quest description
+        private final JButton A_button = new SparkJButton("%placeholder%", 13);       //Button for choosing transition A
+        private final JButton B_button = new SparkJButton("%placeholder%", 13);       //Button for choosing transition B
+        private final JMenuBar menubar = new JMenuBar();                                          //Menubar of the frame
 
         /*Methods*/
 
@@ -361,9 +349,7 @@ public class SparkFrame
             /*Exit game*/
             exit.addActionListener(e -> System.exit(0));
 
-            /*Button Fonts*/
-            A_button.setFont(new Font("VCR OSD MONO", Font.PLAIN, 13));
-            B_button.setFont(new Font("VCR OSD MONO", Font.PLAIN, 13));
+            /*Font*/
             quest_desc.setFont(new Font("VCR OSD MONO", Font.PLAIN, 13));
 
             /*Adding the components*/
@@ -393,9 +379,6 @@ public class SparkFrame
             quest_desc.setText(queue.getCurrent().getDesc());
             A_button.setText(queue.getCurrent().getOptionA());
             B_button.setText(queue.getCurrent().getOptionB());
-
-            A_button.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));  //color setting
-            B_button.setBackground(Color.getHSBColor(hsb[0], hsb[1], hsb[2]));  //color setting
 
             /*Cleanup*/
             ActionListener[] alis = A_button.getActionListeners();
