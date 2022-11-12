@@ -13,7 +13,7 @@ public class QuestQueue implements Serializable
     /*Attributes*/
 
     private final List<Quest> queue = new ArrayList<>();      //The list that stores the Quest objects
-    private int current_state = 0;                      //Stores the state, that the queue is currently in
+    private int current_state = 0;                            //Stores the state, that the queue is currently in
 
     /*Methods*/
 
