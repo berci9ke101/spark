@@ -13,9 +13,9 @@ import java.io.IOException;
 public class SparkFrame
 {
     /*Attributes*/
-    private final GameFile GAME;                               //The game file of the game (and also the game logic)
-    private final MainMenu mainMenu;                           //The main menu of the game
-    private final GameFrame gameFrame;                         //The game frame
+    private final GameFile GAME = new GameFile();                               //The game file of the game (and also the game logic)
+    private final MainMenu mainMenu = new MainMenu();                           //The main menu of the game
+    private final GameFrame gameFrame= new GameFrame();                         //The game frame
 
     /*Methods*/
 
@@ -24,10 +24,6 @@ public class SparkFrame
      */
     public SparkFrame()
     {
-        GAME = new GameFile();
-        mainMenu = new MainMenu();
-        gameFrame = new GameFrame();
-
         /*Registering the custom font*/
         try
         {
