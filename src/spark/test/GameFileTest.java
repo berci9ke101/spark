@@ -2,8 +2,8 @@ package spark.test;
 
 import org.junit.*;
 import spark.*;
-import spark.quest.*;
 
+import java.io.File;
 import java.io.IOException;
 
 public class GameFileTest
@@ -32,19 +32,22 @@ public class GameFileTest
     public void testSaveGameThrow() throws Exception
     {
         //Tested on Windows
-        game.saveGame("/=/=/");
+        game.saveGame("///");
     }
 
-    @Test(expected = Test.None.class /* no exception expected */)
+    @Test( /* no exception expected */)
     public void testNewGameNoThrow() throws Exception
     {
         //Requires test_load file to work
         game.newGame("load");
     }
 
-    @Test(expected = Test.None.class /* no exception expected */)
+    @Test(/* no exception expected */)
     public void testSaveGameNoThrow() throws Exception
     {
         game.saveGame("save");
+
+        File delete = new File("save.sprkdt");
+        delete.delete();
     }
 }
