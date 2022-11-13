@@ -15,7 +15,7 @@ public class SparkFrame
     /*Attributes*/
     private final GameFile GAME = new GameFile();                               //The game file of the game (and also the game logic)
     private final MainMenu mainMenu = new MainMenu();                           //The main menu of the game
-    private final GameFrame gameFrame= new GameFrame();                         //The game frame
+    private final GameFrame gameFrame = new GameFrame();                        //The game frame
 
     /*Methods*/
 
