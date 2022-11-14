@@ -1,6 +1,6 @@
 .idea
 out
 spark.iml
-img/psd
+bin/img/psd
 load
 *.sprkdt
