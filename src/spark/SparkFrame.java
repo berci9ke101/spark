@@ -28,7 +28,7 @@ public class SparkFrame
         try
         {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("ttf/VCR_OSD_MONO_1.001.ttf")));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("bin/ttf/VCR_OSD_MONO_1.001.ttf")));
         } catch (Exception e)
         {
             /*progress anyway*/
@@ -107,7 +107,7 @@ public class SparkFrame
             /*Main Menu image*/
             try
             {
-                spark_menu = new JLabel(new ImageIcon(ImageIO.read(new File("img/menu.png"))));
+                spark_menu = new JLabel(new ImageIcon(ImageIO.read(new File("bin/img/menu.png"))));
             } catch (IOException e)
             {
                 /*Progress anyway*/
@@ -117,7 +117,7 @@ public class SparkFrame
             /*New Game button*/
             try
             {
-                new_game = new JLabel(new ImageIcon(ImageIO.read(new File("img/new_game.png"))));
+                new_game = new JLabel(new ImageIcon(ImageIO.read(new File("bin/img/new_game.png"))));
             } catch (IOException e)
             {
                 /*Progress anyway*/
@@ -128,7 +128,7 @@ public class SparkFrame
             /*Load Game Button*/
             try
             {
-                load_game = new JLabel(new ImageIcon(ImageIO.read(new File("img/load_game.png"))));
+                load_game = new JLabel(new ImageIcon(ImageIO.read(new File("bin/img/load_game.png"))));
             } catch (IOException e)
             {
                 /*Progress anyway*/
