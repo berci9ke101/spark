@@ -38,7 +38,7 @@ public class GameFileTest
     @Test( /* no exception expected */)
     public void testNewGameNoThrow() throws Exception
     {
-        //Requires test_load file to work
+        //Requires load file to work
         game.newGame("load");
     }
 

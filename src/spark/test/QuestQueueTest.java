@@ -22,7 +22,6 @@ public class QuestQueueTest
     public void testQueueAdd()
     {
         queue.add(basic);
-        queue.add(random);
 
         Assert.assertEquals(basic, queue.getCurrent()); //Testing whether the 0th element of the list is basic
     }
