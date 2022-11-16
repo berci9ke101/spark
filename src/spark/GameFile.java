@@ -3,6 +3,7 @@ package spark;
 import spark.quest.*;
 
 import java.io.*;
+import java.nio.file.FileSystems;
 
 /**
  * A class for the game file and its manipulation
@@ -94,7 +95,9 @@ public class GameFile
      */
     public void saveGame(String name) throws IOException
     {
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(name + ".sprkdt"));
+        String sep = FileSystems.getDefault().getSeparator();
+
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("bin" + sep + "save" + sep + name + ".sprkdt"));
         oos.writeObject(queue);
         oos.close();
     }

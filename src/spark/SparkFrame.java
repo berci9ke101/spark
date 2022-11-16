@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
 
 /**
  * The framing (pun intended) of the game
@@ -27,8 +28,9 @@ public class SparkFrame
         /*Registering the custom font*/
         try
         {
+            String sep = FileSystems.getDefault().getSeparator();
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("bin/ttf/VCR_OSD_MONO_1.001.ttf")));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("bin" + sep + "ttf" + sep + "VCR_OSD_MONO_1.001.ttf")));
         } catch (Exception e)
         {
             /*progress anyway*/
@@ -77,6 +79,9 @@ public class SparkFrame
             /*Magic Constants*/
             float[] hsb = {0.0f, 0.0f, 0.93333334f};     //HSB value of the background colour
 
+            /*File-separator*/
+            String sep = FileSystems.getDefault().getSeparator();
+
 
             /*Init with Grid*/
             this.setLayout(new GridLayout(3, 1));
@@ -107,7 +112,7 @@ public class SparkFrame
             /*Main Menu image*/
             try
             {
-                spark_menu = new JLabel(new ImageIcon(ImageIO.read(new File("bin/img/menu.png"))));
+                spark_menu = new JLabel(new ImageIcon(ImageIO.read(new File("bin" + sep + "img" + sep + "menu.png"))));
             } catch (IOException e)
             {
                 /*Progress anyway*/
@@ -117,7 +122,7 @@ public class SparkFrame
             /*New Game button*/
             try
             {
-                new_game = new JLabel(new ImageIcon(ImageIO.read(new File("bin/img/new_game.png"))));
+                new_game = new JLabel(new ImageIcon(ImageIO.read(new File("bin" + sep + "img" + sep + "new_game.png"))));
             } catch (IOException e)
             {
                 /*Progress anyway*/
@@ -128,7 +133,7 @@ public class SparkFrame
             /*Load Game Button*/
             try
             {
-                load_game = new JLabel(new ImageIcon(ImageIO.read(new File("bin/img/load_game.png"))));
+                load_game = new JLabel(new ImageIcon(ImageIO.read(new File("bin" + sep + "img" + sep + "load_game.png"))));
             } catch (IOException e)
             {
                 /*Progress anyway*/
@@ -257,18 +262,33 @@ public class SparkFrame
                 this.setLayout(new BorderLayout());
 
                 JPanel panel = new JPanel();
-                File location = new File(System.getProperty("user.dir"));
-                File[] files = location.listFiles((idc, fname) -> fname.endsWith(".sprkdt"));
 
-                options = new JComboBox(files);
+                /*Magic...*/
+                String savepath = new File(System.getProperty("user.dir")).getPath();
+                String sep = FileSystems.getDefault().getSeparator(); //file separator
+                savepath += sep + "bin" + sep + "save" + sep;
+
+                final String finalpath = savepath;
+                File location = new File(finalpath);
+
+                File[] files = location.listFiles((idc, fname) -> fname.endsWith(".sprkdt"));
+                String[] saves = new String[files.length];
+                for (int i = 0; i < files.length; i++)
+                {
+                    saves[i] = files[i].getName();
+                }
+                /*End of magic*/
+
+                options = new JComboBox(saves);
 
                 panel.add(options);
 
                 load.addActionListener(e ->
                 {
+                    String path = finalpath + options.getSelectedItem();
                     try
                     {
-                        GAME.loadGame((File) options.getSelectedItem());
+                        GAME.loadGame(new File(path));
                         this.setVisible(false);
                         mainMenu.setVisible(false);
 
