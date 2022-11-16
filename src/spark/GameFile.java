@@ -97,7 +97,9 @@ public class GameFile
     {
         String sep = FileSystems.getDefault().getSeparator();
 
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("bin" + sep + "save" + sep + name + ".sprkdt"));
+        FileOutputStream fio = new FileOutputStream("bin" + sep + "save" + sep + name + ".sprkdt");
+
+        ObjectOutputStream oos = new ObjectOutputStream(fio);
         oos.writeObject(queue);
         oos.close();
     }

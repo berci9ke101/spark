@@ -273,6 +273,12 @@ public class SparkFrame
 
                 File[] files = location.listFiles((idc, fname) -> fname.endsWith(".sprkdt"));
 
+                if (files == null)
+                {
+                    location.mkdir();
+                    files = new File[]{};
+                }
+
                 String[] saves = new String[files.length];
                 for (int i = 0; i < files.length; i++)
                 {
