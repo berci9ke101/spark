@@ -18,7 +18,7 @@ public class GameFile
      * Getter for the queue
      *
      * @return the queue of the game
-     * */
+     */
     public QuestQueue getQueue()
     {
         return queue;
@@ -37,28 +37,31 @@ public class GameFile
         String line;
         while ((line = read.readLine()) != null)
         {
-            String[] data = line.split(";");
-
-            int ID = Integer.parseInt(data[0]);
-            String desc = data[2];
-            String optA = data[3];
-            int jmpA = Integer.parseInt(data[4]);
-            String optB = data[5];
-            int jmpB = Integer.parseInt(data[6]);
-
-            switch (data[1].toLowerCase())
+            if (!line.equals(""))
             {
-                case "b":
-                    queue.add(new BasicQuest(ID, desc, optA, optB, jmpA, jmpB));
-                    break;
-                case "v":
-                    int altjmp = Integer.parseInt(data[8]);
-                    String altdsc = data[7];
-                    queue.add(new VisitableQuest(ID, desc, optA, optB, jmpA, jmpB, altdsc, altjmp));
-                    break;
-                case "r":
-                    queue.add(new RandomQuest(ID, desc, optA, optB, jmpA, jmpB));
-                    break;
+                String[] data = line.split(";");
+
+                int ID = Integer.parseInt(data[0]);
+                String desc = data[2];
+                String optA = data[3];
+                int jmpA = Integer.parseInt(data[4]);
+                String optB = data[5];
+                int jmpB = Integer.parseInt(data[6]);
+
+                switch (data[1].toLowerCase())
+                {
+                    case "b":
+                        queue.add(new BasicQuest(ID, desc, optA, optB, jmpA, jmpB));
+                        break;
+                    case "v":
+                        int altjmp = Integer.parseInt(data[8]);
+                        String altdsc = data[7];
+                        queue.add(new VisitableQuest(ID, desc, optA, optB, jmpA, jmpB, altdsc, altjmp));
+                        break;
+                    case "r":
+                        queue.add(new RandomQuest(ID, desc, optA, optB, jmpA, jmpB));
+                        break;
+                }
             }
         }
         read.close();
