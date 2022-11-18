@@ -38,8 +38,8 @@ public class GameFileTest
     @Test( /* no exception expected */)
     public void testNewGameNoThrow() throws Exception
     {
-        //Requires load file to work
-        game.newGame("load");
+        //Requires demo file to work
+        game.newGame("demo");
     }
 
     @Test(/* no exception expected */)
