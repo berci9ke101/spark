@@ -32,7 +32,7 @@ public class GameFileTest
     public void testSaveGameThrow() throws Exception
     {
         //Tested on Windows
-        game.saveGame("///");
+        game.saveGame("/-/-/");
     }
 
     @Test( /* no exception expected */)
