@@ -33,7 +33,6 @@ public class GameFileTest
     {
         //Tested on Windows
         game.saveGame("/-/-/");
-
     }
 
     @Test( /* no exception expected */)
